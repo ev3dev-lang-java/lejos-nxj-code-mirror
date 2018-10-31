@@ -2,6 +2,8 @@ sudo: required
 language: java
 jdk:
   - openjdk10
+before_install:
+  - chmod +x mvnw
 services:
 - docker
 cache:
@@ -16,6 +18,6 @@ notifications:
     recipients:
       - bren@juanantonio.info
 script:
-  - ./mvn clean package
+  - ./mvnw clean package
 after_success:
   - bash <(curl -s https://codecov.io/bash)
