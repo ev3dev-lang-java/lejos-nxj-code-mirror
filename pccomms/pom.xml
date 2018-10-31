@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>lejos</groupId>
+        <artifactId>lejos-parent</artifactId>
+        <version>0.9-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>pccomms</artifactId>
+
+    <name>PC Communications</name>
+    <description>Remote classes that execute on a PC and communicate with the lejos jvm NXT hardware.</description>
+
+    <scm>
+        <connection>scm:svn:https://lejos.svn.sourceforge.net/svnroot/lejos/trunk/${project.artifactId}</connection>
+        <developerConnection>scm:svn:https://lejos.svn.sourceforge.net/svnroot/lejos/trunk/${project.artifactId}</developerConnection>
+    </scm>
+    <url>http://lejos.sourceforge.net/</url>
+    
+    <packaging>jar</packaging>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <resources>
+            <resource>
+                <!-- @todo maybe move such resource files to canonical 'resource' tree? -->
+                <directory>${project.build.sourceDirectory}</directory>
+                <includes>
+                    <include>lejos/**/*.bin</include>
+                    <include>lejos/**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>../classes/src_shared</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <optimize>true</optimize>
+                </configuration>
+            </plugin>
+
+        </plugins>
+        
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.bluecove</groupId>
+            <artifactId>bluecove</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.bluecove</groupId>
+            <artifactId>bluecove-gpl</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>stax</groupId>
+            <artifactId>stax-api</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+</project>
