@@ -2,10 +2,13 @@ sudo: required
 language: java
 jdk:
   - openjdk10
+services:
+- docker
 cache:
   directories:
   - .autoconf
   - $HOME/.m2
+  - docker
 notifications:
   email:
     on_success: always
